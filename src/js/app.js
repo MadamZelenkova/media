@@ -44,7 +44,7 @@ export function getGeolocation() {
   });
 }
 
-function parseCoordinates(input) {
+export function parseCoordinates(input) {
   input = input.replace(/[[]/g, "").trim();
 
   const [latStr, lonStr] = input.split(",").map((str) => str.trim());
