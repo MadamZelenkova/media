@@ -2,8 +2,10 @@ import { createNotification, addCoords, addBtnHendler } from "./DOM.js";
 
 import { removeMessage, loadMessages } from "./local_storage.js";
 
-loadMessages();
-addBtnHendler();
+document.addEventListener("DOMContentLoaded", () => {
+  loadMessages();
+  addBtnHendler();
+});
 
 export function btnHandle(e) {
   e.preventDefault();

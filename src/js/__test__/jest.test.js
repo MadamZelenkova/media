@@ -2,9 +2,9 @@ import { parseCoordinates } from "../app.js";
 
 describe("parseCoordinates", () => {
   const testCases = [
-    [["51.50851, -0.12572"], "51.50851, -0.12572"],
-    [["51.50851,-0.12572"], "51.50851, -0.12572"],
-    [["[51.50851, -0.12572]"], "51.50851, -0.12572"],
+    ["51.50851, -0.12572", "51.50851, -0.12572"],
+    ["51.50851,-0.12572", "51.50851, -0.12572"],
+    ["[51.50851, -0.12572]", "51.50851, -0.12572"],
   ];
 
   testCases.forEach(([input, expected]) => {
@@ -13,13 +13,15 @@ describe("parseCoordinates", () => {
     });
   });
 
-  test("should throw error for invalid format", () => {
-    expect(() => parseCoordinates("invalid input")).toThrow(
-      "Невалидный формат",
-    );
+  test("should show alert for invalid format", () => {
+    global.alert = jest.fn();
+    parseCoordinates("invalid input");
+    expect(global.alert).toHaveBeenCalledWith("Невалидный формат");
   });
 
-  test("should throw an error for out of range latitude", () => {
-    expect(() => parseCoordinates("100, 0")).toThrow("Невалидный формат");
+  test("should show alert for out of range latitude", () => {
+    global.alert = jest.fn();
+    parseCoordinates("100, 0");
+    expect(global.alert).toHaveBeenCalledWith("Невалидный формат");
   });
 });
